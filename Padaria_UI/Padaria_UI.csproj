@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{540C1E25-50FC-433E-8090-E02F8DD3F73A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Padaria_UI</RootNamespace>
+    <AssemblyName>Padaria_UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Laboratório\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>EAEBC7485FE0FD0118DECC988CB3F1E8C3F4AF60</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Padaria_UI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Correios, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Correios-Api.1.1.1\lib\portable-net45+win\Correios.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.9.1.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classe Estatica\Altenticar.cs" />
+    <Compile Include="Cadastro De Clientes\Cadastro_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro De Clientes\Cadastro_cliente.Designer.cs">
+      <DependentUpon>Cadastro_cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro De Produtos\Cadastro_Produto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro De Produtos\Cadastro_Produto.Designer.cs">
+      <DependentUpon>Cadastro_Produto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classe Estatica\Retornar_Id_Qnt.cs" />
+    <Compile Include="DiaEntregaDoPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiaEntregaDoPedido.Designer.cs">
+      <DependentUpon>DiaEntregaDoPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIParent.Designer.cs">
+      <DependentUpon>MDIParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MetodoPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MetodoPagamento.Designer.cs">
+      <DependentUpon>MetodoPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos\PedidoFechado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedidos\PedidoFechado.Designer.cs">
+      <DependentUpon>PedidoFechado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos\PedidoAberto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedidos\PedidoAberto.Designer.cs">
+      <DependentUpon>PedidoAberto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cadastro de Taxa de Entrega\TaxaEntrega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro de Taxa de Entrega\TaxaEntrega.Designer.cs">
+      <DependentUpon>TaxaEntrega.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FuturosPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuturosPedidos.Designer.cs">
+      <DependentUpon>FuturosPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vender Produtos\Vender_Produto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vender Produtos\Vender_Produto.Designer.cs">
+      <DependentUpon>Vender_Produto.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Cadastro De Clientes\Cadastro_cliente.resx">
+      <DependentUpon>Cadastro_cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro De Produtos\Cadastro_Produto.resx">
+      <DependentUpon>Cadastro_Produto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiaEntregaDoPedido.resx">
+      <DependentUpon>DiaEntregaDoPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIParent.resx">
+      <DependentUpon>MDIParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetodoPagamento.resx">
+      <DependentUpon>MetodoPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedidos\PedidoFechado.resx">
+      <DependentUpon>PedidoFechado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedidos\PedidoAberto.resx">
+      <DependentUpon>PedidoAberto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Cadastro de Taxa de Entrega\TaxaEntrega.resx">
+      <DependentUpon>TaxaEntrega.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FuturosPedidos.resx">
+      <DependentUpon>FuturosPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vender Produtos\Vender_Produto.resx">
+      <DependentUpon>Vender_Produto.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Padaria_DTO.Cliente_DTO.datasource" />
+    <None Include="Properties\DataSources\Padaria_DTO.Itens_DTO.datasource" />
+    <None Include="Properties\DataSources\Padaria_DTO.listaPedido_DTO.datasource" />
+    <None Include="Properties\DataSources\Padaria_DTO.Pedido_DTO.datasource" />
+    <None Include="Properties\DataSources\Padaria_DTO.Produto_DTO.datasource" />
+    <None Include="Properties\DataSources\Padaria_DTO.Taxa_DTO.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagens\DrMX9bKWwAAlFII-768x432.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pão.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_311846.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Padaria_BLL\Padaria_BLL.csproj">
+      <Project>{2fd0c1bc-1a31-4cd6-bf4d-516961fa2b9e}</Project>
+      <Name>Padaria_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Padaria_DTO\Padaria_DTO.csproj">
+      <Project>{5093d3c8-74fb-43fa-9541-9d95fd79fab9}</Project>
+      <Name>Padaria_DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\depositphotos_13777709-stock-illustration-bakery-seamless-wallpaper.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
