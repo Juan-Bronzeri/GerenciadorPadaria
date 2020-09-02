@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Padaria_DAL;
+﻿using Padaria_DAL;
 using Padaria_DTO;
+using System;
+using System.Collections.Generic;
 
 namespace Padaria_BLL
 {

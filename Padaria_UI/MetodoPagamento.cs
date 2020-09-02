@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Padaria_BLL;
+using System;
 using System.Windows.Forms;
-using Padaria_DTO;
-using Padaria_BLL;
 
 namespace Padaria_UI
 {
@@ -44,7 +36,7 @@ namespace Padaria_UI
 
         private void checkDinheiro_CheckedChanged(object sender, EventArgs e)
         {
-            if((checkCartao.Checked || checkCheque.Checked) && c == 0 && check == 0)
+            if ((checkCartao.Checked || checkCheque.Checked) && c == 0 && check == 0)
             {
                 d++;
                 MessageBox.Show("Atenção, Não pode ter duas formas de pagamento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -61,12 +53,12 @@ namespace Padaria_UI
 
         private void checkCartao_CheckedChanged(object sender, EventArgs e)
         {
-            if ((checkDinheiro.Checked || checkCheque.Checked) && d ==0 && check == 0)
+            if ((checkDinheiro.Checked || checkCheque.Checked) && d == 0 && check == 0)
             {
                 c++;
                 MessageBox.Show("Atenção, Não pode ter duas formas de pagamento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 checkDinheiro.Checked = false;
-                checkCheque.Checked = false;  
+                checkCheque.Checked = false;
             }
             else
             {

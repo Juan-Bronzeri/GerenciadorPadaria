@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Padaria_BLL;
 using Padaria_DTO;
-using Padaria_BLL;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Padaria_UI
 {
@@ -61,7 +55,7 @@ namespace Padaria_UI
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         private void CarregaGridDeItem(int idPedido, decimal taxa)
         {
             try

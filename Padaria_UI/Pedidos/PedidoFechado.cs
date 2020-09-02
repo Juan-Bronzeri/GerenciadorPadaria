@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Padaria_BLL;
+using Padaria_DTO;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Padaria_DTO;
-using Padaria_BLL;
 
 namespace Padaria_UI
 {
@@ -46,7 +46,7 @@ namespace Padaria_UI
                 string nome = txtNome.Text;
                 listPedidoFechado_DTO = new PedidoBLL().Listar_Pedido_Fechado(nome);
                 dgvPedidoComFiltro.DataSource = listPedidoFechado_DTO;
-                if(listPedidoFechado_DTO.Count <= 0)
+                if (listPedidoFechado_DTO.Count <= 0)
                 {
                     MessageBox.Show("Não foram encontrados nenhum pedido com esse nome");
                 }
@@ -61,7 +61,7 @@ namespace Padaria_UI
         {
             try
             {
-                if(txtData.Text != "  /  /" & txtDataFim.Text != "  /  /" & txtNome.Text != "")
+                if (txtData.Text != "  /  /" & txtDataFim.Text != "  /  /" & txtNome.Text != "")
                 {
                     DateTime inicio = Convert.ToDateTime(txtData.Text);
                     DateTime final = Convert.ToDateTime(txtDataFim.Text);
@@ -86,13 +86,13 @@ namespace Padaria_UI
                         dgvPedidoComFiltro.DataSource = null;
                     }
                 }
-                else if(txtData.Text != "  /  /" & txtDataFim.Text != "  /  /")
+                else if (txtData.Text != "  /  /" & txtDataFim.Text != "  /  /")
                 {
                     DateTime inicio = Convert.ToDateTime(txtData.Text);
                     DateTime final = Convert.ToDateTime(txtDataFim.Text);
 
                     listPedidoFechado_DTO = new PedidoBLL().Listar_Pedido_Filtro(inicio, final);
-                    if(listPedidoFechado_DTO.Count != 0)
+                    if (listPedidoFechado_DTO.Count != 0)
                     {
                         /*Recarrega o Grid*/
                         dgvPedidoComFiltro.DataSource = listPedidoFechado_DTO;
@@ -106,11 +106,11 @@ namespace Padaria_UI
                         string i = inicio.ToString("dd/MM/yyyy");
                         string f = final.ToString("dd/MM/yyyy");
                         MessageBox.Show("Não foram encontrados nenhum pedido entre as datas:         " +
-                            " "+i+" e "+f+"");
+                            " " + i + " e " + f + "");
                     }
 
                 }
-                else if(txtNome.Text != "")
+                else if (txtNome.Text != "")
                 {
                     string nome = txtNome.Text;
                     decimal x = new PedidoBLL().valorBrutoNome(nome);

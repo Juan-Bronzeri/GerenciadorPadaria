@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Padaria_BLL;
 using Padaria_DTO;
-using Padaria_BLL;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Padaria_UI
@@ -70,7 +70,7 @@ namespace Padaria_UI
             try
             {
                 decimal total = 0;
-                for(int i = 0; i < listaDeItens.Count; i++)
+                for (int i = 0; i < listaDeItens.Count; i++)
                 {
                     listaDeItens[i].Total = listaDeItens[i].PrecoProduto * listaDeItens[i].Quantidade;
                     total = listaDeItens[i].Total + total;
@@ -199,12 +199,12 @@ namespace Padaria_UI
                     int Qnt = 0, id = 0;
                     int x = retornaIdPedido.RetornarId();
                     int cont = new ItensBLL().excluiItem(x);
-                    while(cont >= 0)
+                    while (cont >= 0)
                     {
                         new ItensBLL().adicionaEstoque(cont);
                         cont--;
                     }
-                    
+
                     if (listaDeItens.Count > 0)
                     {
                         Itens_DTO item = new Itens_DTO();
@@ -260,7 +260,7 @@ namespace Padaria_UI
                         {
                             listaDeItens[i].Quantidade = listaDeItens[i].Quantidade - qnt;
                         }
-                        if(listaDeItens[i].Quantidade <= 0)
+                        if (listaDeItens[i].Quantidade <= 0)
                         {
                             listaDeItens.RemoveAt(i);
                         }

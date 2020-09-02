@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Padaria_BLL;
+using System;
 using System.Windows.Forms;
-using Padaria_BLL;
 
 namespace Padaria_UI
 {
@@ -10,11 +10,11 @@ namespace Padaria_UI
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-        }    
+        }
 
         private void Click_btnLogin(object sender, EventArgs e)
         {
-            Verificar(txtUsuario.Text, txtSenha.Text); 
+            Verificar(txtUsuario.Text, txtSenha.Text);
         }
 
         //verifica validade dos dados de login

@@ -1,22 +1,26 @@
-﻿using System;
+﻿using Padaria_DTO;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using Padaria_DTO;
 
 namespace Padaria_DAL
 {
+    public static class Conexao
+    {
+        private static string stringcon = "Data Source=wksgbti2;Initial Catalog=Padaria;Integrated Security=True";
+        public static string Stringcon { get { return stringcon; } }
+    }
     public class LoginDAL
     {
+        
         private SqlCommand CM = new SqlCommand();
-        SqlConnection CON = new SqlConnection();
-
+        SqlConnection CON = new SqlConnection(Conexao.Stringcon);
         public bool VerificaLogin(string user, string password)
         {
             bool result = false;
-
             using (CON)
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
 
                 try
                 {
@@ -39,7 +43,7 @@ namespace Padaria_DAL
     public class ClienteDAL
     {
         private SqlCommand CM = new SqlCommand();
-        SqlConnection CON = new SqlConnection();
+        SqlConnection CON = new SqlConnection(Conexao.Stringcon);
 
         private IList<Cliente_DTO> listClienteDTO = new List<Cliente_DTO>();
         private IList<Taxa_DTO> listTaxa_DTO = new List<Taxa_DTO>();
@@ -48,7 +52,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "SELECT Id, Nome,"
                                + "'(' + substring(Telefone, 1, 2) + ')' + substring(Telefone, 3, 5) + '-' + substring(Telefone, 8, 4) "
@@ -88,7 +92,7 @@ namespace Padaria_DAL
 
         public IList<Cliente_DTO> Listar(string tel)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+           // CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT Id, Nome,"
                                + "'(' + substring(Telefone, 1, 2) + ')' + substring(Telefone, 3, 5) + '-' + substring(Telefone, 8, 4) "
@@ -125,7 +129,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "SELECT * FROM tb_taxa";
                 CM.Connection = CON;
@@ -156,7 +160,7 @@ namespace Padaria_DAL
 
         public int IdTaxa(string nomeBairro)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+           // CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT Id FROM tb_taxa WHERE NomeBairro=@NomeBairro";
             CM.Parameters.Add("NomeBairro", System.Data.SqlDbType.VarChar).Value = nomeBairro;
@@ -188,7 +192,7 @@ namespace Padaria_DAL
             try
             {
                 /*Conexão com BD Inserindo dados na tb_clientes*/
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "INSERT INTO tb_cliente (IdTaxa, Nome, Telefone, Rua," +
                     " CEP, NumeroCasa, Complemento, DataCadastro, HorarioEntrega)" + "   VALUES   (@IdTaxa, @Nome, @Telefone," +
@@ -220,7 +224,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 /*Atenção ao nome dos campos que deve ser igual ao Banco de Dados*/
                 CM.CommandText = "UPDATE tb_cliente SET Nome=@Nome, " + "Telefone=@Telefone, " +
@@ -252,7 +256,7 @@ namespace Padaria_DAL
 
         public bool buscaIdTaxa(string nomebairro)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+           // CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT Id FROM tb_taxa WHERE NomeBairro LIKE '" + nomebairro + "'";
             CM.Connection = CON;
@@ -272,7 +276,7 @@ namespace Padaria_DAL
             try
             {
                 /*Excluindo dados na tb_clientes*/
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "delete tb_itens where IdPedido in (Select Id from tb_pedido"
                                + " where IdCliente = @Id)"
@@ -297,7 +301,7 @@ namespace Padaria_DAL
     public class ProdutoDAL
     {
         private SqlCommand CM = new SqlCommand();
-        SqlConnection CON = new SqlConnection();
+        SqlConnection CON = new SqlConnection(Conexao.Stringcon);
 
         IList<Produto_DTO> listProdutoDTO = new List<Produto_DTO>();
 
@@ -305,7 +309,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "SELECT * FROM tb_produto order by Quantidade";
                 CM.Connection = CON;
@@ -337,7 +341,7 @@ namespace Padaria_DAL
 
         public IList<Produto_DTO> Listar_Produto(string nome_produto)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+            //CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT * FROM dbo.tb_produto WHERE NomeProduto like '%" + nome_produto + "%'" +
                 "order by Quantidade";
@@ -369,7 +373,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "INSERT INTO tb_produto (NomeProduto, Preco, Quantidade)"
                     + " VALUES (@NomeProduto, @Preco, @Quantidade)";
@@ -403,7 +407,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 /*Atenção ao nome dos campos que deve ser igual ao Banco de Dados*/
                 CM.CommandText = "UPDATE tb_produto SET NomeProduto=@NomeProduto, " +
@@ -432,7 +436,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "delete from tb_itens where IdProduto = @Id "
                                 + "DELETE tb_produto WHERE Id = @Id";
@@ -455,7 +459,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 /*Atenção ao nome dos campos que deve ser igual ao Banco de Dados*/
                 CM.CommandText = "UPDATE tb_produto SET Quantidade = Quantidade - @Quantidade where Id = @Id";
@@ -484,7 +488,7 @@ namespace Padaria_DAL
         private int[] qnt = new int[50];
         private int i;
         private SqlCommand CM = new SqlCommand();
-        SqlConnection CON = new SqlConnection();
+        SqlConnection CON = new SqlConnection(Conexao.Stringcon);
 
         private IList<Itens_DTO> listItensDTO = new List<Itens_DTO>();
 
@@ -492,7 +496,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "SELECT * FROM tb_pedido";
                 CM.Connection = CON;
@@ -524,7 +528,7 @@ namespace Padaria_DAL
 
         public IList<Itens_DTO> Listar_Item_Abertos(int id)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+            //CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT * FROM tb_itens WHERE IdPedido=@IdPedido";
             CM.Parameters.Add("IdPedido", System.Data.SqlDbType.Int).Value = id;
@@ -554,7 +558,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "INSERT INTO tb_itens (IdPedido, IdProduto, NomeProduto, Quantidade, PrecoProduto, Observacao)" +
                     " VALUES (@IdPedido, @IdProduto, @NomeProduto, @Quantidade, @PrecoProduto, @Observacao)";
@@ -582,7 +586,7 @@ namespace Padaria_DAL
 
         public void AdicionaEstoque(int i)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+           // CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             int id = Retornar.RetornoaId(i);
             int qnt = Retornar.RetornaQnt(i);
@@ -602,7 +606,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "SELECT * FROM tb_itens WHERE IdPedido=@IdPedido";
                 CM.Parameters.Add("IdPedido", System.Data.SqlDbType.Int).Value = id;
@@ -647,7 +651,7 @@ namespace Padaria_DAL
     {
         decimal Total;
         private SqlCommand CM = new SqlCommand();
-        SqlConnection CON = new SqlConnection();
+        SqlConnection CON = new SqlConnection(Conexao.Stringcon);
 
         private IList<Itens_DTO> listItemDTO = new List<Itens_DTO>();
         private IList<Pedido_DTO> listPedidoDTO = new List<Pedido_DTO>();
@@ -656,11 +660,11 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+                //CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
-                CM.CommandText = "SELECT A.Nome, A.Telefone, A.Rua, A.CEP, A.NumeroCasa, A.Complemento, A.IdTaxa, B.Id, substring(HorarioEntrega, 1,2)+':'+substring(HorarioEntrega,3,2)+'/'+substring(HorarioEntrega, 5,2)+':'+substring(HorarioEntrega, 7,2)"
-                                +" as Horario"
-                                +" FROM tb_cliente AS A, tb_pedido AS B Where B.Estado > 0 AND A.Id = B.IdCliente";
+                CM.CommandText = "SELECT A.Nome, A.Telefone, A.Rua, A.CEP, A.NumeroCasa, A.Complemento, A.IdTaxa, B.IdPedido, substring(HorarioEntrega, 1,2)+':'+substring(HorarioEntrega,3,2)+'/'+substring(HorarioEntrega, 5,2)+':'+substring(HorarioEntrega, 7,2)"
+                                + " as Horario"
+                                + " FROM tb_cliente AS A, tb_pedido AS B Where B.Estado > 0 AND A.Id = B.IdCliente";
                 CM.Connection = CON;
                 CON.Open();
 
@@ -672,7 +676,7 @@ namespace Padaria_DAL
                     while (ER.Read())
                     {
                         Pedido_DTO ped = new Pedido_DTO();
-                        ped.IdPedido = Convert.ToInt32(ER["Id"]);
+                        ped.IdPedido = Convert.ToInt32(ER["IdPedido"]);
                         ped.Nome = Convert.ToString(ER["Nome"]);
                         ped.NumeroCasa = Convert.ToInt16(ER["NumeroCasa"]);
                         ped.Rua = Convert.ToString(ER["Rua"]);
@@ -697,9 +701,9 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+              //  CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
-                CM.CommandText = "SELECT A.Nome, A.Telefone, B.Id, B.DataAbertura, B.MetodoPagamento"
+                CM.CommandText = "SELECT A.Nome, A.Telefone, B.IdPedido, B.DataAbertura, B.MetodoPagamento"
                                   + " FROM tb_cliente AS A, tb_pedido AS B"
                                   + " Where B.Estado = 0 AND A.Id = B.IdCliente";
                 CM.Connection = CON;
@@ -713,7 +717,7 @@ namespace Padaria_DAL
                     while (ER.Read())
                     {
                         Pedido_DTO ped = new Pedido_DTO();
-                        ped.IdPedido = Convert.ToInt32(ER["Id"]);
+                        ped.IdPedido = Convert.ToInt32(ER["IdPedido"]);
                         ped.NomeCliente = Convert.ToString(ER["Nome"]);
                         ped.Telefone = Convert.ToString(ER["Telefone"]);
                         ped.DataAbertura = Convert.ToDateTime(ER["DataAbertura"]);
@@ -734,9 +738,9 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+             //   CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
-                CM.CommandText = "SELECT A.Nome, A.Telefone, B.Id, B.DataAbertura"
+                CM.CommandText = "SELECT A.Nome, A.Telefone, B.IdPedido, B.DataAbertura"
                                   + " FROM tb_cliente AS A, tb_pedido AS B"
                                   + " Where B.Estado = 0 AND A.Id = B.IdCliente AND A.Nome like '%" + nome + "%'"
                                   + " order by Nome";
@@ -751,7 +755,7 @@ namespace Padaria_DAL
                     while (ER.Read())
                     {
                         Pedido_DTO ped = new Pedido_DTO();
-                        ped.IdPedido = Convert.ToInt32(ER["Id"]);
+                        ped.IdPedido = Convert.ToInt32(ER["IdPedido"]);
                         ped.NomeCliente = Convert.ToString(ER["Nome"]);
                         ped.Telefone = Convert.ToString(ER["Telefone"]);
                         ped.DataAbertura = Convert.ToDateTime(ER["DataAbertura"]);
@@ -772,11 +776,11 @@ namespace Padaria_DAL
             try
             {
                 DateTime dataHoje = Convert.ToDateTime(System.DateTime.Now);
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
-                CM.CommandText = "SELECT A.Nome, A.Telefone, B.Id, B.DataAbertura"
-                                    +" FROM tb_cliente AS A, tb_pedido AS B"
-                                    +" Where B.Estado = 1 AND DataAbertura > @Data AND A.Id = B.IdCliente";
+                CM.CommandText = "SELECT A.Nome, A.Telefone, B.IdPedido, B.DataAbertura"
+                                    + " FROM tb_cliente AS A, tb_pedido AS B"
+                                    + " Where B.Estado = 1 AND DataAbertura > @Data AND A.Id = B.IdCliente";
                 CM.Parameters.Add("Data", System.Data.SqlDbType.Date).Value = dataHoje;
                 CM.Connection = CON;
                 CON.Open();
@@ -792,7 +796,7 @@ namespace Padaria_DAL
                         ped.Nome = Convert.ToString(ER["Nome"]);
                         ped.Telefone = Convert.ToString(ER["Telefone"]);
                         ped.DataAbertura = Convert.ToDateTime(ER["DataAbertura"]);
-                        ped.IdPedido = Convert.ToInt32(ER["Id"]);
+                        ped.IdPedido = Convert.ToInt32(ER["IdPedido"]);
 
                         listPedidoDTO.Add(ped);
                     }
@@ -809,9 +813,9 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
-                CM.CommandText = "SELECT A.Nome, A.Telefone, B.Id, B.DataAbertura"
+                CM.CommandText = "SELECT A.Nome, A.Telefone, B.IdPedido, B.DataAbertura"
                                   + " FROM tb_cliente AS A, tb_pedido AS B"
                                   + " Where B.Estado = 0 AND DataAbertura BETWEEN @inicio AND @final AND A.Id = B.IdCliente";
                 CM.Parameters.Add("inicio", System.Data.SqlDbType.Date).Value = i;
@@ -828,7 +832,7 @@ namespace Padaria_DAL
                     while (ER.Read())
                     {
                         Pedido_DTO ped = new Pedido_DTO();
-                        ped.IdPedido = Convert.ToInt32(ER["Id"]);
+                        ped.IdPedido = Convert.ToInt32(ER["IdPedido"]);
                         ped.NomeCliente = Convert.ToString(ER["Nome"]);
                         ped.Telefone = Convert.ToString(ER["Telefone"]);
                         ped.DataAbertura = Convert.ToDateTime(ER["DataAbertura"]);
@@ -848,9 +852,9 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
-                CM.CommandText = "SELECT A.Nome, A.Telefone, B.Id, B.DataAbertura"
+                CM.CommandText = "SELECT A.Nome, A.Telefone, B.IdPedido, B.DataAbertura"
                                   + " FROM tb_cliente AS A, tb_pedido AS B"
                                   + " Where B.Estado = 0 AND DataAbertura BETWEEN @inicio AND @final AND A.Id = B.IdCliente"
                                   + " AND A.Nome LIKE '%" + nome + "%'";
@@ -868,7 +872,7 @@ namespace Padaria_DAL
                     while (ER.Read())
                     {
                         Pedido_DTO ped = new Pedido_DTO();
-                        ped.IdPedido = Convert.ToInt32(ER["Id"]);
+                        ped.IdPedido = Convert.ToInt32(ER["IdPedido"]);
                         ped.NomeCliente = Convert.ToString(ER["Nome"]);
                         ped.Telefone = Convert.ToString(ER["Telefone"]);
                         ped.DataAbertura = Convert.ToDateTime(ER["DataAbertura"]);
@@ -889,7 +893,7 @@ namespace Padaria_DAL
             try
             {
                 SomarTotal.Somar(0, 0, 0);
-                CON.ConnectionString = Properties.Settings.Default.CST;
+              //  CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
 
                 CM.CommandText = "SELECT * "
@@ -933,7 +937,7 @@ namespace Padaria_DAL
 
         public decimal valorTaxa(int id)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+            //CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT Valor "
                            + "FROM tb_taxa "
@@ -961,7 +965,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+        //        CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "select sum(PrecoProduto * i.Quantidade) AS Total"
                                   + " from tb_itens AS i, tb_pedido AS p"
@@ -998,11 +1002,11 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "select sum(PrecoProduto * i.Quantidade) AS Total "
                                     + "from tb_itens AS i, tb_pedido AS p "
-                                    + "where i.IdPedido = p.Id AND p.Estado = 0 "
+                                    + "where i.IdPedido = p.IdPedido AND p.Estado = 0 "
                                     + "and p.IdCliente = (SELECT Id FROM tb_cliente where Nome LIKE '%" + nome + "%') ";
 
 
@@ -1037,7 +1041,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "INSERT INTO tb_pedido (IdCliente, DataAbertura, Estado, MetodoPagamento)" +
                     " VALUES (@IdCliente, @DataAbertura, @Estado, '')";
@@ -1062,23 +1066,23 @@ namespace Padaria_DAL
 
         public int IDPedido()
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+           // CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.Connection = CON;
             CON.Open();
             int id;
-            CM.CommandText = "SELECT max(Id) as id from tb_pedido";
+            CM.CommandText = "SELECT max(IdPedido) as id from tb_pedido";
             SqlDataReader ER;
             ER = CM.ExecuteReader();
             ER.Read();
-            id = Convert.ToInt16(ER["Id"]);
+            id = Convert.ToInt16(ER["IdPedido"]);
 
             return id;
         }
 
         public int IDCliente(string nome_cliente)
         {
-            CON.ConnectionString = Properties.Settings.Default.CST;
+           // CON.ConnectionString = Properties.Settings.Default.CST;
             CM.CommandType = System.Data.CommandType.Text;
             CM.CommandText = "SELECT Id FROM tb_cliente WHERE Nome=@Nome";
             CM.Parameters.Add("Nome", System.Data.SqlDbType.VarChar).Value = nome_cliente;
@@ -1102,10 +1106,10 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+              //  CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "UPDATE tb_pedido SET MetodoPagamento = " +
-                    "'" + metodo + "' where Id = " + id + "";
+                    "'" + metodo + "' where IdPedido = " + id + "";
 
                 CM.Connection = CON;
                 CON.Open();
@@ -1121,11 +1125,11 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+             //   CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
 
                 /*Atenção ao nome dos campos que deve ser igual ao Banco de Dados*/
-                CM.CommandText = "UPDATE tb_pedido SET Estado = 0 WHERE Id = '" + id + "'";
+                CM.CommandText = "UPDATE tb_pedido SET Estado = 0 WHERE IdPedido = '" + id + "'";
                 CM.Connection = CON;
 
                 /*Abre conexão*/
@@ -1143,12 +1147,12 @@ namespace Padaria_DAL
     public class TaxaDAL
     {
         private SqlCommand CM = new SqlCommand();
-        SqlConnection CON = new SqlConnection();
+        SqlConnection CON = new SqlConnection(Conexao.Stringcon);
         public int insereTaxa(Taxa_DTO taxa)
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "INSERT INTO tb_taxa (NomeBairro, Valor)" + "   VALUES   (@NomeBairro, @Valor)";
 
@@ -1173,7 +1177,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
 
                 CM.CommandText = "UPDATE tb_taxa SET NomeBairro=@NomeBairro, " +
@@ -1202,7 +1206,7 @@ namespace Padaria_DAL
         {
             try
             {
-                CON.ConnectionString = Properties.Settings.Default.CST;
+               // CON.ConnectionString = Properties.Settings.Default.CST;
                 CM.CommandType = System.Data.CommandType.Text;
                 CM.CommandText = "DELETE tb_taxa WHERE Id = " + id + "" +
                     "UPDATE tb_cliente SET IdTaxa = 0 where IdTaxa = " + id + "";

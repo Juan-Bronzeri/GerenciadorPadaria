@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Padaria_BLL;
+using Padaria_DTO;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Padaria_DTO;
-using Padaria_BLL;
 
 namespace Padaria_UI
 {
@@ -70,7 +70,7 @@ namespace Padaria_UI
         private void Click_btnAdicionar(object sender, EventArgs e)
         {
             try
-            {      
+            {
                 bool achou = false;
                 foreach (Produto_DTO PRO in listProduto)
                 {
